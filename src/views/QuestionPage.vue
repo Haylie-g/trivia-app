@@ -23,7 +23,19 @@ onMounted(async () => {
       answer: wrong_answer
     })
   })
+
+  answers.value = shuffle(answers.value)
+  //console.log(question.value)
 })
+
+
+const shuffle = (array) => {
+  for (let i = array.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    //swap
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
 
 </script>
 
@@ -35,7 +47,7 @@ onMounted(async () => {
   {{ question.question }}
 
   <div v-for="answer in answers" v-html="answer.answer" :key="answer.id" class="">
-    
+
   </div>
 </div>
 <div v-else class="">
