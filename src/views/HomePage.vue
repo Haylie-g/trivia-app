@@ -1,30 +1,26 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted } from 'vue'
 import BaseTitle from '@/components/BaseTitle.vue'
 import useAPI from '@/composables/useAPI'
 
 const { categories, getCategories } = useAPI()
 
-
 onMounted(async () => {
   await getCategories()
-
 })
-
-
-
 </script>
 
 <template>
   <BaseTitle>TRIVIA APPLICATION</BaseTitle>
   <div class="grid flex-grow grid-cols-4 gap-12 m-20">
-        <RouterLink v-for="category in categories" 
-        :key="category.id"
-        :to="'/question/category/${category}'"
-        class="bg-white text-center flex h-32 items-center justify center rounded-lg border-slate-500 py-4 font-bold uppercase hover cursor-pointer hover-red-500 hover:bg-red-400 hover:text-white transition-colors duration-300">
+    <RouterLink 
+      v-for="category in categories" 
+      :key="category.id"
+      :to="`/question/category/${category.id}`" 
+      class="bg-white text-center flex h-32 items-center justify-center rounded-lg border-slate-500 py-4 font-bold uppercase hover:cursor-pointer hover:border-red-500 hover:bg-red-400 hover:text-white transition-colors duration-300"> <!-- Fixed justify-center and added hover:border-red-500 -->
       {{ category.name }}
-        </RouterLink>
+    </RouterLink>
   </div>
-
 </template>
+
 
