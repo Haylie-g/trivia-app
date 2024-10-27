@@ -4,6 +4,7 @@ import useAPI from '@/composables/useAPI';
 import { useRoute } from 'vue-router';
 import BaseTitle from '@/components/BaseTitle.vue';
 import DifficultyChip from '@/components/DifficultyChip.vue';
+import MainScore from '@/composables/MainScore.vue';
 
 const api = useAPI();
 const question = ref(null);
@@ -44,7 +45,7 @@ const shuffle = (array) => {
 
 <template>
   <div v-if="question" class="flex h-full w-full flex-col items-center gap-8 p-10">
-    <BaseTitle>{{ question.category }}</BaseTitle>
+    <BaseTitle>{{ question.category }} - <MainScore></MainScore></BaseTitle>
     <div v-html="question.question" class="text-center text-2xl font-bold"></div>
     <div class="grid w-full flex-grow grid-cols-2 gap-8">
       <div v-for="answer in answers" :key="answer.id" 
